@@ -1,17 +1,11 @@
+from collections import Counter
 def total_similarity(left_list, right_list):
-    left_list.sort()
-    right_list.sort()
-
+    right_count = Counter(right_list)
     similarity = 0 
 
     for l in left_list:
-        temp = 0
-        for r in right_list:
-            if l < r:
-                break
-            if l == r:
-                temp += 1
-        similarity =  similarity + (l * temp) 
+        similarity += (l * right_count[l]) 
+        
     return similarity
 
 with open("input.txt", "r") as f:
